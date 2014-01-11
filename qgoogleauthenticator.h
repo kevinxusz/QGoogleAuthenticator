@@ -14,8 +14,6 @@
 class QGOOGLEAUTHENTICATORSHARED_EXPORT QGoogleAuthenticator
 {
 public:
-    QGoogleAuthenticator();
-
     static QString getCode(QByteArray secret, quint64 time = 0);
     static bool checkCode(QString code, QByteArray secret);
     static QString generate_secret();
