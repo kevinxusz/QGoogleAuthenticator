@@ -1,10 +1,5 @@
 #include "qgoogleauthenticator.h"
 
-QGoogleAuthenticator::QGoogleAuthenticator()
-{
-    qsrand(QTime::currentTime().msec());
-}
-
 QString QGoogleAuthenticator::getCode(QByteArray secret, quint64 time)
 {
     QString challenge;
@@ -51,6 +46,7 @@ bool QGoogleAuthenticator::checkCode(QString code, QByteArray secret)
 
 QString QGoogleAuthenticator::generate_secret()
 {
+    qsrand(QTime::currentTime().msec());
     const QString possibleCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
     QString secret = "";
     for(int i = 0; i < SECRET_LENGTH; i++)
