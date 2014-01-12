@@ -2,7 +2,6 @@
 
 QString QGoogleAuthenticator::getCode(QByteArray secret, quint64 time)
 {
-    QString challenge;
     quint64 current;
     if (time == 0)
     {
@@ -44,7 +43,7 @@ bool QGoogleAuthenticator::checkCode(QString code, QByteArray secret)
     return false;
 }
 
-QString QGoogleAuthenticator::generate_secret()
+QByteArray QGoogleAuthenticator::generate_secret()
 {
     qsrand(QTime::currentTime().msec());
     const QString possibleCharacters("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
@@ -57,5 +56,5 @@ QString QGoogleAuthenticator::generate_secret()
     }
     QString result;
     Base32::base32_encode(&secret, &result, secret.length());
-    return result;
+    return result.toUtf8();
 }
